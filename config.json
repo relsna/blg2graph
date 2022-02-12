@@ -1,0 +1,61 @@
+{
+    "timeframe":{
+        "group_interval":"1Min",
+        "start_time":"00:10:01",
+        "end_time":"05:00:00"
+    },
+    "matching":{
+        "Apply":false,
+        "counters":[
+            "Processor",
+            "LogicalDisk",
+            "PhysicalDisk",
+            "Network Interface",
+            "Avg. Disk Bytes/Read",
+            "Avg. Disk Bytes/Write",
+            "Avg. Disk Queue Length",
+            "Current Disk Queue Length",
+            "Avg. Disk sec/Write",
+            "Avg. Disk sec/Read",
+            "Processor",
+            "Memory"
+        ]
+    },
+    "exclude":{
+        "Apply":false,
+        "counters":[
+            "isatap",
+            "f Maximum Frequency"
+        ]
+    },
+    "graphs":[
+        {
+            "category":"default",
+            "title":"default",
+            "kind":"line",
+            "color":"r",
+            "counters":[]
+        },
+        {
+            "category":"default",
+            "title":"SQL Activity",
+            "kind":"line",
+            "color":"r",
+            "counters":[
+                "Batch Requests/sec",
+                "Transactions/sec"
+            ]
+        },
+        {
+            "category":"default",
+            "title":"CPU",
+            "kind":"line",
+            "color":"r",
+            "counters":[
+                "User Time/sec",
+                "Priviledged Time/sec"
+            ],
+            "treshold":"80"
+        }
+    ]
+}
