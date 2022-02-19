@@ -21,7 +21,6 @@ def options():
     3. Graph - Plot a CSV file\n
     0. Exit\n""")
 
-
 def blg2csv():
     root = tk.Tk()
     root.withdraw()
@@ -33,7 +32,6 @@ def blg2csv():
     
     file_list = blg_to_csv.create_daily_csv(file_path[0], date_list)
     print(file_list)
-
 
 def counterslist():
     root = tk.Tk()

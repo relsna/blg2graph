@@ -14,14 +14,12 @@ with open(json_file) as j:
     json_config = json.load(j)
 
 def get_inclusion_counters(json_config):
-    # check filter return NULL (none) ou une liste.....
     if json_config["matching"]["Apply"]:
         return json_config["matching"]["counters"]
     else:
         return []
 
 def get_exclusion_counters(json_config):
-    # check filter return NULL (none) ou une liste.....
     if json_config["exclude"]["Apply"]:
         return json_config["exclude"]["counters"]
     else:
@@ -36,12 +34,16 @@ def get_timeframe_interval_start_time(json_config):
 def get_timeframe_interval_end_time(json_config):
     return json_config["timeframe"]["end_time"]
 
+# encoded_png = create_graph(col_time, 'line', counter_name, counter_name
+#                               , 'r', col_data, [], group_interval)
+
 
 def create_graph(x, kind, title, l, c, ax1, ax2, group_interval):
     # plotting...
     fig, ax = plt.subplots()
 
-    ax.plot(x, ax1, color=c, label=l)
+    ax.plot(x, ax1, color=c)
+    #ax.plot(x, ax1, color=c, label=l)
     if ax2:
         ax.plot(x, ax2, color=c, label=l)
     
@@ -53,7 +55,7 @@ def create_graph(x, kind, title, l, c, ax1, ax2, group_interval):
     ax.set_ylabel('value')
     ax.set_xlabel(group_interval+' interval')
 
-    ax.legend(loc="upper left")
+    #ax.legend(loc="upper left")
     plt.xticks(rotation = 90)
     plt.tight_layout()
     plt.grid()
@@ -72,8 +74,6 @@ def create_graph(x, kind, title, l, c, ax1, ax2, group_interval):
 def get_columns_list(csv_file):
     return list(csv_file.columns)
 
-#df = pd.read_csv(filename, low_memory=False)
-#columns = list(df.columns)
 
 def apply_exclusion_inclusion(columns):
 
@@ -110,7 +110,7 @@ def graph_all_counters(csv_file):
 
     for a, c in enumerate(columns_list):
         if a > 0: # exclude first csv column
-            #print(c)
+            print(c)
 
             cols = [columns_list[0]]
             cols.append(c)
@@ -142,20 +142,9 @@ def graph_all_counters(csv_file):
             dff = dff.query('col_t < @end_remove and col_t > @start_remove')
 
             group_interval = get_timeframe_interval(json_config)
-            #print(group_interval)
+            print(group_interval)
 
             dfi = dff.groupby(pd.Grouper(key="col_t",freq=group_interval))['col_d'].mean()
-
-            # if group_interval == "H":
-            #     dfi = dff.groupby(pd.Grouper(key="col_t",freq='H'))['col_d'].mean()
-            # elif group_interval == "30Min":
-            #     dfi = dff.groupby(pd.Grouper(key="col_t",freq='30Min'))['col_d'].mean()
-            # elif group_interval == "5Min":
-            #     dfi = dff.groupby(pd.Grouper(key="col_t",freq='5Min'))['col_d'].mean()
-            # elif group_interval == "D":
-            #     dfi = dff.groupby(pd.Grouper(key="col_t",freq='D'))['col_d'].mean()
-            # else:
-            #     dfi = dff
 
             counter_name = counter_name + "_" + group_interval
             
@@ -176,8 +165,7 @@ def graph_all_counters(csv_file):
 
 def main():
     print("main()...")
-    filename = "C:\\temp\\APMSSQLBIP01_dbi_perf_counters_2021-10-20.csv"
-    graph_all_counters(filename)
+    #graph_all_counters(filename)
 
 if __name__ == "__main__":
     main()

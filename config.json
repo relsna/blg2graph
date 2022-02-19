@@ -1,8 +1,8 @@
 {
     "timeframe":{
-        "group_interval":"1Min",
-        "start_time":"00:10:01",
-        "end_time":"05:00:00"
+        "group_interval":"5Min",
+        "start_time":"08:00:00",
+        "end_time":"23:00:00"
     },
     "matching":{
         "Apply":false,
@@ -22,7 +22,7 @@
         ]
     },
     "exclude":{
-        "Apply":false,
+        "Apply":true,
         "counters":[
             "isatap",
             "f Maximum Frequency"

@@ -32,7 +32,6 @@ def get_timeframe(relog_output):
     res.append(end_date)
     return res
 
-
 def get_counters(relog_output):
     # Return a list of counters from a .blg file (relog output)
     # TODO: replace by relog -q (List performance counters in the input file.)
@@ -42,7 +41,6 @@ def get_counters(relog_output):
     for i in tmp:
         if "\\\\" in i:
             counter_list.append(i)
-
     return counter_list
 
 
@@ -69,8 +67,8 @@ def create_daily_csv(blg_file, date_list):
         command = ["relog", blg_file, "-f", "CSV", "-o", str(file_name), "-b", b, "-e", e, "-y"]
 
         subprocess.run(command, capture_output=False)
-    
     return file_list
+
 
 def main():
     root = tk.Tk()
@@ -85,7 +83,6 @@ def main():
     #print('\n'.join([str(date) for date in date_list]))
     file_list = create_daily_csv(file_path[0], date_list)
     print('\n'.join([str(f) for f in file_list]))
-
 
 if __name__ == "__main__":
     main()
